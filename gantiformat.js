@@ -21,6 +21,7 @@ function processGantiFormat() {
       const rows = XLSX.utils.sheet_to_json(ws, { defval: "" });
 
       rows.forEach(r => {
+        const ID = r["ID"];
         const nama = r["Nama"];
         const jabatan = r["Jabatan"];
         const tglMasuk = r["Tanggal_Masuk"];
@@ -46,6 +47,7 @@ function processGantiFormat() {
         if (!sheetsOut[sheetName]) sheetsOut[sheetName] = {};
         if (!sheetsOut[sheetName][nama]) {
           sheetsOut[sheetName][nama] = {
+            ID : ID,
             Nama: nama,
             Jabatan: jabatan,
             hari: {},
@@ -73,6 +75,7 @@ function processGantiFormat() {
       Object.values(sheetsOut[sheetName]).forEach(row => {
         const out = {};
 
+        out["ID"] = row.ID;
         out["NAMA"] = row.Nama;
         out["BAGIAN"] = row.Jabatan;
 
@@ -102,7 +105,7 @@ function processGantiFormat() {
       /* ==========================================
          3️⃣ HEADER (TIDAK BOLEH DOBEL)
       ========================================== */
-      const header = ["NAMA", "BAGIAN"];
+      const header = ["ID","NAMA", "BAGIAN"];
 
       for (let d = 1; d <= 31; d++) header.push(String(d));
 
@@ -125,6 +128,7 @@ function processGantiFormat() {
          5️⃣ LEBAR KOLOM
       ========================================== */
       const colWidths = [];
+      colWidths.push({ wch:10  });//ID
       colWidths.push({ wch: 30 }); // NAMA
       colWidths.push({ wch: 18 }); // BAGIAN
       for (let i = 1; i <= 31; i++) colWidths.push({ wch: 4 });
