@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>HRD OVITIA CANTIK SEKALI PAYROLL</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="desktop-frame">
+
+  <div class="upload-card" id="uploadCard">
+
+    <!-- KUCING NGINTIP -->
+    <img src="kucingcnol.png" class="cat" alt="kucing">
+
+    <!-- ICON -->
+    <img src="folderpink.png" class="icon-img" alt="folder">
+
+    <p id="fileText">Click the button below to upload your files</p>
+
+    <!-- Tombol pilih file -->
+    <button class="btn" id="btnSelect">Pilih File</button>
+    <input type="file" id="fileInput" hidden>
+
+    <!-- Tombol proses -->
+    <button class="btn process" id="btnProcess">Proses</button>
+
+    <!-- Tombol Back -->
+    <img src="backbutton.png" id="btnBack" class="back-btn" alt="Back">
+  </div>
+
+</div>
+
+<!-- Library XLSX -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+<!-- Script hitungan kamu -->
+<script src="harian.js"></script>
+
+<!-- UI Script -->
+<script>
+const fileInput = document.getElementById("fileInput");
+const btnSelect = document.getElementById("btnSelect");
+const btnProcess = document.getElementById("btnProcess");
+const uploadCard = document.getElementById("uploadCard");
+const fileText = document.getElementById("fileText");
+const iconImg = document.querySelector(".icon-img");
+const btnBack = document.getElementById("btnBack");
+
+btnBack.addEventListener("click", () => {
+    window.location.href = "index.html"; // langsung ke halaman menu utama
+});
+
+// klik tombol pilih file → buka dialog file
+btnSelect.addEventListener("click", () => fileInput.click());
+
+// update UI kalau file dipilih
+fileInput.addEventListener("change", () => {
+  if (fileInput.files.length > 0) {
+    uploadCard.classList.add("active", "has-file");
+    fileText.textContent = fileInput.files[0].name;
+
+    iconImg.src = "file.png"; // ganti ke icon file
+    iconImg.style.width = "48px";
+  } else {
+    uploadCard.classList.remove("active", "has-file");
+    fileText.textContent = "Click the button below to upload your files";
+    iconImg.src = "folderpink.png";
+    iconImg.style.width = "";
+  }
+});
+
+// tombol proses → panggil function processExcel dari script.js
+btnProcess.addEventListener("click", () => {
+  if (fileInput.files.length === 0) {
+    alert("Pilih file Excel dulu!");
+    return;
+  }
+  processExcel(); // pastikan fungsi ini ada di script.js
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* BODY */
+body {
+  margin: 0;
+  background: #f6f7fb;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* DESKTOP FRAME */
+.desktop-frame {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+}
+
+/* CARD */
+.upload-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  border: 2px dashed #ffb6d5;
+  border-radius: 16px;
+  padding: 60px 40px 40px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+/* ACTIVE */
+.upload-card.active {
+  border-color: #ff5da2;
+  background: #fff0f7;
+}
+
+/* ICON */
+.icon-img {
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+/* 🐱 KUCING NGINTIP (INI KUNCINYA) */
+.cat {
+  position: absolute;
+  top: -85px;          /* keluar sedikit dari card */
+  left: 35%;
+  transform: translateX(-50%);
+  width: 180px;        /* BESAR & IMUT */
+  pointer-events: none;
+}
+
+/* BUTTON */
+.btn {
+  background: #ff5da2;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 6px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.upload-card.has-file .cat {
+  display: none;
+}
+
+#fileText {
+  max-width: 300px;
+  margin: 0 auto 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.back-btn {
+    position: absolute;
+    top: calc(50% + 140px); 
+    left: calc(50% + 100px); 
+    width: 60px;
+    cursor: pointer;
+    z-index: 20;
+    transition: transform 0.2s ease;
+}
+
+.back-btn:hover {
+    transform: scale(1.1);
+}
+
