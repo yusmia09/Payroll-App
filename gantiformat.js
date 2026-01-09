@@ -141,7 +141,7 @@ function processGantiFormat() {
       );
     });
 
-    XLSX.writeFile(wbOut, "FORMAT_BULANAN_DESEMBER.xlsx");
+    XLSX.writeFile(wbOut, "HASIL INPUT.xlsx");
   };
 
   reader.readAsArrayBuffer(file);
